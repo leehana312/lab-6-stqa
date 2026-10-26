@@ -1,8 +1,7 @@
 # Lab 6: REST API Testing
 
-**Duration:** 2 hours  **Work mode:** groups
+**Duration:** 2 hours **Work mode:** groups
 
-<<<<<<< HEAD
 This lab has two parts. Part 1 establishes the method, against an
 application whose contract is given to you. Part 2 applies the same
 method to an application whose contract you must establish yourself.
@@ -11,8 +10,6 @@ method to an application whose contract you must establish yourself.
 
 # Part 1: Testing a given contract
 
-=======
->>>>>>> 72f504e356286eeab4184025332cac488a592e2a
 **Application under test:** `https://pytodo-lab6.onrender.com` (the PyTodo JSON API)
 
 ## 1. What you are building
@@ -69,11 +66,11 @@ to be logged in.
 
 ## 4. The three routes you are testing
 
-| Method | Route | What it does |
-|---|---|---|
-| GET | `/api/tasks` | returns every task as a JSON list |
-| POST | `/api/tasks` | creates one task from a JSON body |
-| DELETE | `/api/tasks/<id>` | deletes the task with that id |
+| Method | Route             | What it does                      |
+| ------ | ----------------- | --------------------------------- |
+| GET    | `/api/tasks`      | returns every task as a JSON list |
+| POST   | `/api/tasks`      | creates one task from a JSON body |
+| DELETE | `/api/tasks/<id>` | deletes the task with that id     |
 
 Every route needs a login first. Without it, every route replies
 `401`.
@@ -127,13 +124,13 @@ expected.
 
 Commit `test_api.py` to your repo before moving to Part 2.
 
-| Criterion | Points |
-|---|---|
-| GET tests understood and run cleanly (already given, but explain them if asked) | 5 |
-| POST valid test checks status, headers, and payload | 10 |
-| POST invalid test checks for 400 and a non-empty errors list | 10 |
-| DELETE existing and DELETE missing, correct status codes | 10 |
-| Full create-read-delete flow test | 15 |
+| Criterion                                                                       | Points |
+| ------------------------------------------------------------------------------- | ------ |
+| GET tests understood and run cleanly (already given, but explain them if asked) | 5      |
+| POST valid test checks status, headers, and payload                             | 10     |
+| POST invalid test checks for 400 and a non-empty errors list                    | 10     |
+| DELETE existing and DELETE missing, correct status codes                        | 10     |
+| Full create-read-delete flow test                                               | 15     |
 
 ---
 
@@ -183,11 +180,11 @@ returned, and note the disagreement.
 
 The four routes to establish:
 
-| Method | Route |
-|---|---|
-| GET | `/posts/1` |
-| GET | `/posts` |
-| POST | `/posts` |
+| Method | Route      |
+| ------ | ---------- |
+| GET    | `/posts/1` |
+| GET    | `/posts`   |
+| POST   | `/posts`   |
 | DELETE | `/posts/1` |
 
 ## 11. Write the tests
@@ -222,10 +219,10 @@ test.
 
 Commit `API_FINDINGS.md` and `test_public_api.py` to your repository.
 
-| Criterion | Points |
-|---|---|
-| `API_FINDINGS.md` complete and accurate for all four routes | 25 |
-| `test_get_single_post` correct | 10 |
-| `test_get_all_posts` correct | 10 |
-| `test_create_post` correct | 10 |
-| `test_delete_post` correct | 10 |
+| Criterion                                                   | Points |
+| ----------------------------------------------------------- | ------ |
+| `API_FINDINGS.md` complete and accurate for all four routes | 25     |
+| `test_get_single_post` correct                              | 10     |
+| `test_get_all_posts` correct                                | 10     |
+| `test_create_post` correct                                  | 10     |
+| `test_delete_post` correct                                  | 10     |

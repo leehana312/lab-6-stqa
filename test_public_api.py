@@ -13,38 +13,45 @@ BASE_URL = "https://jsonplaceholder.typicode.com"
 
 
 def test_get_single_post():
-    """GET /posts/1.
+    response = requests.get(f"{BASE_URL}/posts/1")
+    assert response.status_code == 200
+    assert response.headers["Content-Type"] == "application/json; charset=utf-8"
 
-    Assert the status code, the Content-Type header, and that the
-    response body contains the keys recorded in API_FINDINGS.md, each
-    of the correct type.
-    """
-    pass
+    body = response.json()
+    assert isinstance(body["userId"], int)
+    assert isinstance(body["id"], int)
+    assert isinstance(body["title"], str)
+    assert isinstance(body["body"], str)
+    assert body["id"] == 1
 
 
 def test_get_all_posts():
-    """GET /posts.
+    response = requests.get(f"{BASE_URL}/posts")
+    assert response.status_code == 200
+    assert response.headers["Content-Type"] == "application/json; charset=utf-8"
 
-    Assert the status code, the Content-Type header, and that the
-    response body has the shape recorded in API_FINDINGS.md.
-    """
-    pass
+    body = response.json()
+    assert isinstance(body, list)
+    assert len(body) == 100
+    first = body[0]
+    assert set(first.keys()) == {"userId", "id", "title", "body"}
 
 
 def test_create_post():
-    """POST /posts.
+    payload = {"title": "foo", "body": "bar", "userId": 1}
+    response = requests.post(f"{BASE_URL}/posts", json=payload)
+    assert response.status_code == 201
+    assert response.headers["Content-Type"] == "application/json; charset=utf-8"
 
-    Send the request body recorded in API_FINDINGS.md. Assert the
-    status code, the Content-Type header, and that the response body
-    contains the fields you sent, plus the field the server adds.
-    """
-    pass
+    body = response.json()
+    assert body["title"] == "foo"
+    assert body["body"] == "bar"
+    assert body["userId"] == 1
+    assert isinstance(body["id"], int)   # the field the server adds
 
 
 def test_delete_post():
-    """DELETE /posts/1.
-
-    Assert the status code and the Content-Type header recorded in
-    API_FINDINGS.md.
-    """
-    pass
+    response = requests.delete(f"{BASE_URL}/posts/1")
+    assert response.status_code == 200
+    assert response.headers["Content-Type"] == "application/json; charset=utf-8"
+    assert response.json() == {}
